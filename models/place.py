@@ -76,3 +76,10 @@ class Place(BaseModel, Base):
                 if amenity.place_id == self.id:
                     amenity_list.append(amenity)
             return amenity_list
+
+        """
+        @amenities.setter
+        def amenities(self, amenities):
+            if isinstance(amenities, Amenity):
+                self.amenity_ids.append(amenities.id)
+        """

@@ -15,14 +15,6 @@ from models.city import City
 app = Flask(__name__)
 
 
-@app.teardown_appcontext
-def close_session(exception):
-    """
-    Removes the current SQLAlchemy Session after each request
-    """
-    storage.close()
-
-
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_by_states():
     """
@@ -31,6 +23,14 @@ def cities_by_states():
     states = storage.all(State).values()
     sorted_states = sorted(states, key=lambda x: x.name)
     return render_template('8-cities_by_states.html', states=sorted_states)
+
+
+@app.teardown_appcontext
+def close_session(exception):
+    """
+    Removes the current SQLAlchemy Session after each request
+    """
+    storage.close()
 
 
 if __name__ == "__main__":

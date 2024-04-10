@@ -35,7 +35,8 @@ def states_and_cities(id=None):
         state = next((state for state in states if state.id == id), None)
         if state:
             cities = sorted(state.cities, key=lambda x: x.name)
-            return render_template('9-states.html', states=states, state=state, cities=cities)
+            return render_template('9-states.html',
+                                   states=states, state=state, cities=cities)
         else:
             return render_template('9-states.html', states=states, state=None)
     else:

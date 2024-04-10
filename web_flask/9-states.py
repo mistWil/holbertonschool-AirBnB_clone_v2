@@ -29,18 +29,10 @@ def states_and_cities(id=None):
     Displays an HTML page with a list of all State objects
     or a list of cities for a given state
     """
-    states = storage.all(State).values()
-    states = sorted(states, key=lambda x: x.name)
-    if id:
-        state = storage.get(State, id)
-        if state:
-            cities = sorted(state.cities, key=lambda x: x.name)
-            return render_template('9-states.html',
-                                   states=states, state=state, cities=cities)
-        else:
-            abort(404)
-    else:
-        return render_template('9-states.html', states=states)
+    states = storage.all("State")
+    if state_id is not None:
+        state_id = 'State.' + state_id
+    return render_template('9-states.html', states=states, state_id=state_id)
 
 
 if __name__ == "__main__":

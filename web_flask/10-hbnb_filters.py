@@ -2,41 +2,40 @@
 
 
 """
-Script that starts a Flask web application
+Flask Application
 """
 
 
-from flask import Flask, render_template
 from models import storage
+from flask import Flask, render_template
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
+import os
 
 app = Flask(__name__)
-
+app.url_map.strict_slashes = False
 
 @app.teardown_appcontext
-def close_session(exception):
+def close_db(error):
     """
-    Removes the current SQLAlchemy Session after each request
+    Remove the current SQLAlchemy Session
     """
     storage.close()
 
-
-@app.route('/hbnb_filters', strict_slashes=False)
+@app.route('/hbnb_filters')
 def hbnb_filters():
     """
-    Displays an HTML page with filters for State, City, and Amenity objects
+    Displays the main filters HTML page
     """
-    states = storage.all(State).values()
-    states = sorted(states, key=lambda x: x.name)
-    cities = storage.all(City).values()
-    cities = sorted(cities, key=lambda x: x.name)
-    amenities = storage.all(Amenity).values()
-    amenities = sorted(amenities, key=lambda x: x.name)
-    return render_template('10-hbnb_filters.html',
-                           states=states, cities=cities, amenities=amenities)
+    states = list(storage.all(State).values())
+    states.sort(key=lambda x: x.name)
+    amenities = list(storage.all(Amenity).values())
+    amenities.sort(key=lambda x: x.name)
 
+    return render_template('10-hbnb_filters.html',
+                           states=states,
+                           amenities=amenities)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

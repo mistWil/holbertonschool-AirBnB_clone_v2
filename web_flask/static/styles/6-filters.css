@@ -1,0 +1,93 @@
+/* styles/6-filters.css */
+
+.filters {
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding-right: 0%;
+    position: relative; /* Ajout de position relative pour positionner les listes déroulantes */
+}
+
+.locations,
+.amenities {
+    width: 30%;
+    height: 100%;
+    border-right: 1px solid #DDDDDD;
+    position: relative;
+}
+
+.locations {
+    justify-self: flex-start;
+}
+
+.amenities {
+    border-right: none;
+}
+.locations:hover .popover,
+.amenities:hover .popover {
+    display: block; /* Affichage de la liste déroulante au survol */
+}
+
+.popover {
+    max-height: 300px;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #FAFAFA;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    list-style: none;
+    padding: 0;
+    margin-top: 0rem;
+    overflow-y: auto;
+   
+}
+
+h2 {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+li {
+    margin: 1rem;
+    padding: 0;
+}
+
+h3 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 0rem;
+    padding-bottom: 0%;
+    margin-left: 0.5rem;
+}
+
+.states {
+    margin-left: 0.5rem;
+}
+.search-button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    transition: opacity 0.3s ease;
+    margin-left: 10rem;
+}
+
+.search-button:hover {
+    opacity: 0.9;
+}

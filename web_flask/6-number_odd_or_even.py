@@ -14,16 +14,19 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
+    """Route to display Hello HBNB"""
     return "Hello HBNB!"
 
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
+    """Route to display HBNB"""
     return "HBNB"
 
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
+    """Route to display text with 'C' prefix"""
     text = text.replace('_', ' ')
     return "C " + escape(text)
 
@@ -31,26 +34,27 @@ def c_text(text):
 @app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def python_txt(text):
+    """Route to display text with 'Python' prefix"""
     text = text.replace('_', ' ')
     return "Python " + escape(text)
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def display_number(n):
+    """Route to display a number."""
     return "{} is a number".format(n)
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
+    """Route to display an HTML page with a number."""
     return render_template('5-number.html', n=n)
 
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def display_odd_or_even(n):
-    if n % 2 == 0:
-        parity = 'even'
-    else:
-        parity = 'odd'
+    """Route to display an HTML page with a number and its parity."""
+    parity = 'even' if n % 2 == 0 else 'odd'
     return render_template('6-number_odd_or_even.html', n=n, parity=parity)
 
 

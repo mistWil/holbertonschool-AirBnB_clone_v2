@@ -32,12 +32,12 @@ def states_and_cities(id=None):
     states = storage.all(State).values()
     states = sorted(states, key=lambda x: x.name)
     if id:
-        state = storage.get(State, id)
+        state = next((state for state in states if state.id == id), None)
         if state:
             cities = sorted(state.cities, key=lambda x: x.name)
             return render_template('9-states.html', states=states, state=state, cities=cities)
         else:
-            abort(404)
+            return render_template('9-states.html', states=states, state=None)
     else:
         return render_template('9-states.html', states=states)
 

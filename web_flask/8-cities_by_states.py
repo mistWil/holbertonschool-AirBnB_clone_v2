@@ -28,9 +28,9 @@ def cities_by_states():
     """
     Displays an HTML page with a list of all State objects and their cities
     """
-    states = storage.all("State").values()
-    states = sorted(states, key=lambda x: x.name)
-    return render_template('8-cities_by_states.html', states=states)
+    states = storage.all(State).values()
+    sorted_states = sorted(states, key=lambda x: x.name)
+    return render_template('8-cities_by_states.html', states=sorted_states)
 
 
 if __name__ == "__main__":

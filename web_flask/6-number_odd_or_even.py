@@ -4,9 +4,8 @@
 """ Create server with default main page and odd or even number"""
 
 
-from flask import Flask
+from flask import Flask, render_template
 from markupsafe import escape
-from flask import render_template
 
 
 app = Flask(__name__)
